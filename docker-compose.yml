@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  nextcloud:
+    image: nextcloud
+    ports:
+      - 8080:80
+    volumes:
+      - ./config:/var/www/html/config
+      - ./apps:/var/www/html/custom_apps
+    restart: always
