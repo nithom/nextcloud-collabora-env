@@ -6,6 +6,15 @@ services:
     ports:
       - 8080:80
     volumes:
-      - ./config:/var/www/html/config
-      - ./apps:/var/www/html/custom_apps
-    restart: always
+      - ./nextcloud-config:/var/www/html/config
+      - ./nextcloud-apps:/var/www/html/custom_apps
+      - ./nextcloud-data:/var/www/html/data
+
+  collabora:
+    image: collabora/code
+    ports:
+      - 9980:9980
+    environment:
+      - domain="localhost:8080"
+      - username="admin"
+      - password="admin"

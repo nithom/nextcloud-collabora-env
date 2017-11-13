@@ -1,4 +1,3 @@
 .vagrant/
 *.log
-config/
-apps/
+nextcloud-*/
