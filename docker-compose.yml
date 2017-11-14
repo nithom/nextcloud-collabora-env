@@ -15,6 +15,6 @@ services:
     ports:
       - 9980:9980
     environment:
-      - domain="localhost:8080"
-      - username="admin"
-      - password="admin"
+      - domain=nextcloud:8080
+      - username=admin
+      - password=admin
