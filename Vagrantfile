@@ -26,8 +26,18 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
 
   config.vm.network(:forwarded_port, guest: 8080, host: 8080)
+  config.vm.network(:forwarded_port, guest: 9980, host: 9980)
+  # add additional rsynced share to avoid problems with virtualbox share
+  # Note that this does not sync back to the host; use the vagrant folder for that
+  config.vm.synced_folder ".", "/app", owner: "www-data", type: "rsync"
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 4096
+    v.cpus = 2
+  end
+
 
   config.vm.provision :shell, inline: "apt-get update"
   config.vm.provision :docker
-  config.vm.provision :docker_compose, compose_version:"1.17.0", yml: ["/vagrant/docker-compose.yml"], rebuild: true, project_name: "nextcloud", run: "always"
+  config.vm.provision :docker_compose, compose_version:"1.17.0", yml: ["/app/docker-compose.yml"], rebuild: true, project_name: "nextcloud", run: "always"
 end
