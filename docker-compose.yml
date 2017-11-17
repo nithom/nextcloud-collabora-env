@@ -1,20 +1,21 @@
 version: '2'
 
 services:
-  nextcloud:
+  nextcloud.local:
     image: nextcloud
     ports:
-      - 8080:80
+      - 80:80
     volumes:
       - ./nextcloud-config:/var/www/html/config
       - ./nextcloud-apps:/var/www/html/custom_apps
       - ./nextcloud-data:/var/www/html/data
 
-  collabora:
-    image: collabora/code
+  # run build-collabora.sh before first start!
+  collabora.local:
+    image: collaboracustom
     ports:
       - 9980:9980
     environment:
-      - domain=nextcloud:8080
+      - domain=nextcloud.local:80
       - username=admin
       - password=admin
