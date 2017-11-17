@@ -30,15 +30,13 @@ by adding
 ## Startup (with docker-compose)
 
 1. As we are using http for local testing purposes, we need to build the collabora
-   container with a custom config first. Do this with `./buid-collabora.sh`.
-
+   container with a custom config first. Do this with `./build-collabora.sh`.
+   <br>
    **This is only necessary for the first start or if collabora gets updated!**
 1. Now start the containers:
-
    ~~~sh
    docker-compose up -d
    ~~~
-
 1. For the first start, set the Nextcloud admin account to `admin:admin`
    (keep sqlite as DB).
 
