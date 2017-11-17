@@ -34,6 +34,7 @@ by adding
    <br>
    **This is only necessary for the first start or if collabora gets updated!**
 1. Now start the containers:
+
    ~~~sh
    docker-compose up -d
    ~~~
