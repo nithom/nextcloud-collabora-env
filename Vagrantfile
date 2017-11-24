@@ -39,6 +39,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :shell, inline: "apt-get update"
   config.vm.provision :docker
-  config.vm.provision "shell", path: "/app/build-collabora.sh"
+  config.vm.provision "shell", inline: "/bin/sh /app/build-collabora.sh"
   config.vm.provision :docker_compose, compose_version:"1.17.0", yml: ["/app/docker-compose.yml"], rebuild: true, project_name: "nextcloud", run: "always"
 end
