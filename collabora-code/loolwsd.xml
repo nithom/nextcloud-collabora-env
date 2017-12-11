@@ -88,7 +88,7 @@
             <max_file_size desc="Maximum document size in bytes to load. 0 for unlimited." type="uint">0</max_file_size>
         </wopi>
         <webdav desc="Allow/deny webdav storage. Mutually exclusive with wopi." allow="false">
-            <host desc="Hostname to allow" allow="false">nextcloud:80</host>
+            <host desc="Hostname to allow" allow="false">nextcloud.local</host>
         </webdav>
     </storage>
 
