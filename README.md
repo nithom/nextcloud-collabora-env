@@ -44,6 +44,20 @@ by adding
    Docker will keep the changes upon starts as shared folders in the working
    dir (`nextcloud-*` folders)
 
+## Collabora issues
+
+* on some machines, it may happen that the document cannot be loaded in
+  Collabora.
+  <br>
+  This is a (known issue)[https://github.com/nextcloud/richdocuments/issues/36].
+  <br>
+  Solution: Restart the **collabora container only**, that is
+  
+  ~~~sh
+  docker ps # find out the ID of the container
+  docker restart <id>
+  ~~~
+
 ## Stopping
 
 ~~~sh
