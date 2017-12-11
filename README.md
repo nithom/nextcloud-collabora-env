@@ -49,7 +49,7 @@ by adding
 * on some machines, it may happen that the document cannot be loaded in
   Collabora.
   <br>
-  This is a (known issue)[https://github.com/nextcloud/richdocuments/issues/36].
+  This is a [known issue](https://github.com/nextcloud/richdocuments/issues/36).
   <br>
   Solution: Restart the **collabora container only**, that is
   
