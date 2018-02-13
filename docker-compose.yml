@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   nextcloud.local:
@@ -10,9 +10,8 @@ services:
       - ./nextcloud-apps:/var/www/html/custom_apps
       - ./nextcloud-data:/var/www/html/data
 
-  # run build-collabora.sh before first start!
   collabora.local:
-    image: collaboracustom
+    build: ./collabora-code
     ports:
       - 9980:9980
     environment:
