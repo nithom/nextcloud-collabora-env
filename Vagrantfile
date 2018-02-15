@@ -36,8 +36,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.network(:forwarded_port, guest: 80, host: 80)
   config.vm.network(:forwarded_port, guest: 9980, host: 9980)
-  # add additional rsynced share to avoid problems with virtualbox share
-  # Note that this does not sync back to the host; use the vagrant folder for that
+  # add additional rsynced share to avoid problems with virtualbox share.
+  # Note that this does not sync back to the host.
   config.vm.synced_folder ".", "/app", owner: "www-data", type: "rsync"
 
   # assuming your source folder is located at the same level as this environment
@@ -58,5 +58,5 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :shell, inline: "apt-get update"
   config.vm.provision :docker
-  config.vm.provision :docker_compose, compose_version:"1.17.0", yml: ["/app/docker-compose.yml"], rebuild: true, project_name: "nextcloud", run: "always"
+  config.vm.provision :docker_compose, compose_version:"1.17.0"
 end
