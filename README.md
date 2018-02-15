@@ -1,18 +1,18 @@
 # Development environment for Nextcloud + Collabora
 
-This environment allows to easily run and test the Nextcloud richdocuments app together with Collabora on your machine.
+This environment allows to easily run and test the [Nextcloud richdocuments app](https://github.com/nextcloud/richdocuments) together with [Collabora](https://www.collaboraoffice.com/code/) on your machine.
 
 **Note:** This setup uses unencrypted http connections everywhere. Only use this for local testing purposes,
 and never in a system which is publicly reachable!
 
 ## System requirements
 
-* Docker
-* docker-compose
+* [Docker](https://docs.docker.com/)
+* [docker-compose](https://docs.docker.com/compose/overview/)
 
 or, if your system isn't able to run docker natively
 
-* Vagrant
+* [Vagrant](https://www.vagrantup.com/)
 
 
 ### Domain config
@@ -20,10 +20,10 @@ or, if your system isn't able to run docker natively
 In order to use the setup, you have to set the following on your **host machine**,
 regardless if you are using vagrant or docker-compose.
 
-Modify your [hosts file](https://de.wikipedia.org/wiki/Hosts_%28Datei%29):
+Modify your [hosts file](https://en.wikipedia.org/wiki/Hosts_%28file%29):
 
 * Linux, Mac: `/etc/hosts`
-* Windows: `C:\Windows\system32\drivers\etc\hosts` (cf. german wikipedia article above)
+* Windows: `C:\Windows\system32\drivers\etc\hosts` (cf. Wikipedia article above)
 
 by adding
 
@@ -55,7 +55,7 @@ If Docker runs on your machine, you can skip this section unless you like to run
   as some Vagrant plugins are installed if they are not present. If this is the case,
   a message is prompted after the first up command.*
 1. When everything is ready, use `vagrant ssh` and change into the `/app` directory.
-1. The compose setup is started by the provisioning, if it doesn't work just stop the setup with `docker-compose down` and use the steps of the following section.
+1. Now follow the steps in the next section.
 1. For shutdown, use `vagrant halt` to avoid the time-consuming VM creation on every start (when using a fresh VM, Docker as well as Docker compose and all containers have to be downloaded again).
 
 All following steps can be done the same way in Vagrant or in a native environment.
@@ -66,7 +66,11 @@ All following steps can be done the same way in Vagrant or in a native environme
 
    ~~~sh
    docker-compose up -d
+   docker-compose logs -f # useful to track the container console outputs
    ~~~
+   
+   This may take a while, and it is best to wait until there is no more log
+   output before accessing Nextcloud or Collabora in the browser.
 1. For the first start, set the Nextcloud admin account to `admin:admin`
    (keep sqlite as DB).
    
@@ -98,6 +102,9 @@ docker-compose down
   docker ps # find out the ID of the container
   docker restart <id>
   ~~~
-* When restarting an existing Vagrant box, it may happen that the compose setup does not
-  work anymore. If this is the case, simply use `docker-compose down` to stop
-  everything, and then remove the `nextcloud-*` folders before starting again.
+* When there are problems with the compose setup, it may help to start with a
+  fresh environment. To do so, use `docker-compose down` to stop everything,
+  and then remove the `nextcloud-*` folders before starting again.
+* In some cases, the Collabora container crashes. It seems like this happens
+  when you try to access it before the startup has finished. Restarting the
+  compose setup helped so far.

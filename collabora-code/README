@@ -1,0 +1,4 @@
+The loolwsd.xml file is based on the corresponding file of Collabora/LibreOffice
+online.
+
+Only use this in the scope of a local testing setup, as SSL is disabled!

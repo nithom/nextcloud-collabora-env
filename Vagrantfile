@@ -1,7 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# based on https://medium.com/@cnadeau_/vagrant-as-a-development-environment-e5a83010fb49 and the samples of vagrant-docker-compose
+# Based on the samples of vagrant-docker-compose by Leigh McCulloch, licensed under ISC.
+# See https://github.com/leighmcculloch/vagrant-docker-compose/blob/master/example/Vagrantfile
+# See also https://medium.com/@cnadeau_/vagrant-as-a-development-environment-e5a83010fb49  
 
 didinstall = false
 
