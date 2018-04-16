@@ -1,2 +1,2 @@
-FROM collabora/code:3.0.0.0
+FROM collabora/code:3.1.0.4
 ADD loolwsd.xml /etc/loolwsd

@@ -3,6 +3,8 @@
     <!-- Note: 'default' attributes are used to document a setting's default value as well as to use as fallback. -->
     <!-- Note: When adding a new entry, a default must be set in WSD in case the entry is missing upon deployment. -->
 
+    <allowed_languages desc="List of supported languages on this instance." default="de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru">de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru</allowed_languages>
+
     <tile_cache_path desc="Path to a directory where to keep the tile cache." type="path" relative="false" default="/var/cache/loolwsd"></tile_cache_path>
     <sys_template_path desc="Path to a template tree with shared libraries etc to be used as source for chroot jails for child processes." type="path" relative="true" default="systemplate"></sys_template_path>
     <lo_template_path desc="Path to a LibreOffice installation tree to be copied (linked) into the jails for child processes. Should be on the same file system as systemplate." type="path" relative="false" default="/opt/collaboraoffice5.3"></lo_template_path>
@@ -60,12 +62,17 @@
         </outgoing>
     </trace>
 
+    <net desc="Network settings">
+      <proto type="string" default="all" desc="Protocol to use IPv4, IPv6 or all for both">all</proto>
+    </net>
+
     <ssl desc="SSL settings">
         <enable type="bool" default="true">false</enable>
         <termination desc="Connection via proxy where loolwsd acts as working via https, but actually uses http." type="bool" default="true">false</termination>
         <cert_file_path desc="Path to the cert file" relative="false">/etc/loolwsd/cert.pem</cert_file_path>
         <key_file_path desc="Path to the key file" relative="false">/etc/loolwsd/key.pem</key_file_path>
         <ca_file_path desc="Path to the ca file" relative="false">/etc/loolwsd/ca-chain.cert.pem</ca_file_path>
+        <cipher_list desc="List of OpenSSL ciphers to accept" default="ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"></cipher_list>
         <hpkp desc="Enable HTTP Public key pinning" enable="false" report_only="false">
             <max_age desc="HPKP's max-age directive - time in seconds browser should remember the pins" enable="true">1000</max_age>
             <report_uri desc="HPKP's report-uri directive - pin validation failure are reported at this URL" enable="false"></report_uri>
@@ -95,8 +102,9 @@
     <tile_cache_persistent desc="Should the tiles persist between two editing sessions of the given document?" type="bool" default="true">true</tile_cache_persistent>
 
     <admin_console desc="Web admin console settings.">
-        <username desc="The username of the admin console. Must be set.">admin</username>
-        <password desc="The password of the admin console. Must be set.">admin</password>
+        <enable_pam desc="Enable admin user authentication with PAM" type="bool" default="true">true</enable_pam>
+        <username desc="The username of the admin console. Must be set, if PAM is not enabled, otherwise it's optional.">admin</username>
+        <password desc="The password of the admin console. Deprecated on most platforms. Instead, use loolconfig to set up a secure password.">admin</password>
     </admin_console>
 
 </config>
